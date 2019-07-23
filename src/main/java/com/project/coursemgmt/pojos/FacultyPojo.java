@@ -3,9 +3,12 @@ package com.project.coursemgmt.pojos;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -19,6 +22,9 @@ public class FacultyPojo {
 	private Double experience;
 	private Boolean lab;
 	private List<ModulePojo> modules=new ArrayList<>(); 
+	private List<Calendar> dates=new ArrayList<>();
+	
+	
 	
 	public FacultyPojo() {
 		System.out.println("faculty pojo in");
@@ -76,6 +82,17 @@ public class FacultyPojo {
 
 	public void setModules(List<ModulePojo> modules) {
 		this.modules = modules;
+	}
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "faculty_cal", joinColumns = @JoinColumn(name = "f_uname"), inverseJoinColumns = @JoinColumn(name = "dates_id"))
+
+	public List<Calendar> getDates() {
+		return dates;
+	}
+
+	public void setDates(List<Calendar> dates) {
+		this.dates = dates;
 	}
 
 	

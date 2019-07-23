@@ -1,10 +1,12 @@
 package com.project.coursemgmt.pojos;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +27,7 @@ public class Calendar {
 	private String event;// event VARCHAR(50),
 	// UNIQUE td_ymd_idx (year,month,day),
 	// UNIQUE td_dbdate_idx (db_date)
+	private List<FacultyPojo> avail_faculties;
 	
 	
 	@Id
@@ -121,6 +124,14 @@ public class Calendar {
 	}
 	public void setEvent(String event) {
 		this.event = event;
+	}
+	
+	@ManyToMany(mappedBy = "dates")
+	public List<FacultyPojo> getAvail_faculties() {
+		return avail_faculties;
+	}
+	public void setAvail_faculties(List<FacultyPojo> avail_faculties) {
+		this.avail_faculties = avail_faculties;
 	}
 
 
