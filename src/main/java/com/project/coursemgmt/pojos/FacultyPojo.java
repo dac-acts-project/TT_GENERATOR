@@ -12,16 +12,34 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "faculty_info")
 public class FacultyPojo {
 	
+	@JsonProperty("username")
 	private String faculty_username;
+	
+	@JsonProperty("pass")
+	private String faculty_password;
+	
+	@JsonProperty("name")
 	private String faculty_name;
+	
+	@JsonProperty("rating")
 	private Integer rating;
+	
+	@JsonProperty("exp")
 	private Double experience;
+	
+	@JsonProperty("labFlag")
 	private Boolean lab;
-	private List<ModulePojo> modules=new ArrayList<>(); 
+	
+	@JsonProperty("modules_assigned")
+	private List<ModulePojo> modules=new ArrayList<>();
+	
+	@JsonProperty("faculty_calendar")
 	private List<Calendar> dates=new ArrayList<>();
 	
 	
@@ -93,6 +111,15 @@ public class FacultyPojo {
 
 	public void setDates(List<Calendar> dates) {
 		this.dates = dates;
+	}
+
+	@Column(name = "password" , length = 50)
+	public String getFaculty_password() {
+		return faculty_password;
+	}
+
+	public void setFaculty_password(String faculty_password) {
+		this.faculty_password = faculty_password;
 	}
 
 	

@@ -13,15 +13,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "modules_info")
 public class ModulePojo {
 
+	
+	@JsonProperty("id")
 	private Integer module_id;
+	@JsonProperty("name")
 	private String module_name;
+	@JsonProperty("desc")
 	private String module_desc;
+	@JsonProperty("totalhours")
 	private Integer module_total_hrs;
+	@JsonProperty("faculties")
 	private List<FacultyPojo> faculties = new ArrayList<>();
 
 	public ModulePojo() {
@@ -38,8 +47,10 @@ public class ModulePojo {
 	public void setModule_id(Integer module_id) {
 		this.module_id = module_id;
 	}
+	
 
-	@Column(name = "module_name", length = 50)
+	
+	@Column(unique = true,name = "module_name", length = 50)
 	public String getModule_name() {
 		return module_name;
 	}

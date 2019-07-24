@@ -16,7 +16,7 @@ public class CommonLoginPojo {
 	private String username;
 	private String password;
 
-
+    @Transient
 	private String confirm_password;
 	private String role;
 	
