@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.coursemgmt.daos.CommonLoginDao;
 import com.project.coursemgmt.pojos.CommonLoginPojo;
-
 @RestController
 @RequestMapping("/user")
+
 public class CommonUserLogin {
 
 	@Autowired
 	CommonLoginDao dao;
 	
 	
-	@GetMapping
+	@GetMapping("/check")
 	public String checkingRediection() {
 		return "user login";
 	}
@@ -38,7 +38,7 @@ public class CommonUserLogin {
 				System.out.println("admin in");
 
 				try {
-					res.sendRedirect(res.encodeRedirectURL("admin/check"));
+					res.sendRedirect(res.encodeRedirectURL("admin/modules"));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -56,7 +56,12 @@ public class CommonUserLogin {
 
 			else if (dao.findById(p.getUsername()).get().getRole().equalsIgnoreCase("faculty")) {
 				System.out.println("faculty");
-				res.encodeRedirectURL("faculty/check");
+				try {
+					res.sendRedirect(res.encodeRedirectURL("faculty/check"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 		} else {

@@ -6,17 +6,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 @Entity 
 @Table(name = "common_login")
 public class CommonLoginPojo {
 	
-	
+	@JsonProperty("username")
 	private String username;
+	@JsonProperty("password")
 	private String password;
 
-
+    @Transient
 	private String confirm_password;
 	private String role;
 	
@@ -28,20 +31,28 @@ public class CommonLoginPojo {
 
 
 
-	@Id
-	@Column(name = "uname" ,length = 50)
-	public String getUsername() {
-		return username;
+	public CommonLoginPojo(String username) {
+		
+		this.username = username;
 	}
+
 
 
 	
 
 
 
+	@Id
+	@Column(name = "uname" ,length = 50)
+	
+	public String getUsername() {
+		return username;
+	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 
 	@Column(name = "password" ,length = 50)
 	public String getPassword() {

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,20 +15,31 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "modules_info")
 public class ModulePojo {
 
+	
+	@JsonProperty("id")
 	private Integer module_id;
+	@JsonProperty("name")
 	private String module_name;
+	@JsonProperty("desc")
 	private String module_desc;
+	@JsonProperty("totalhours")
 	private Integer module_total_hrs;
+	@JsonProperty("faculties")
 	private List<FacultyPojo> faculties = new ArrayList<>();
 
 	public ModulePojo() {
 		System.out.println("module pojo in");
 	}
+	
+	
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
@@ -38,8 +50,10 @@ public class ModulePojo {
 	public void setModule_id(Integer module_id) {
 		this.module_id = module_id;
 	}
+	
 
-	@Column(name = "module_name", length = 50)
+	
+	@Column(unique = true,name = "module_name", length = 50)
 	public String getModule_name() {
 		return module_name;
 	}
@@ -66,7 +80,7 @@ public class ModulePojo {
 		this.module_total_hrs = module_total_hrs;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinTable(name = "faculty_module", joinColumns = @JoinColumn(name = "f_uname"), inverseJoinColumns = @JoinColumn(name = "module_id"))
 	public List<FacultyPojo> getFaculties() {
 		return faculties;
@@ -74,6 +88,12 @@ public class ModulePojo {
 
 	public void setFaculties(List<FacultyPojo> faculties) {
 		this.faculties = faculties;
+	}
+
+	@Override
+	public String toString() {
+		return "ModulePojo [module_id=" + module_id + ", module_name=" + module_name + ", module_desc=" + module_desc
+				+ ", module_total_hrs=" + module_total_hrs + ", faculties=" + faculties + "]";
 	}
 
 }
