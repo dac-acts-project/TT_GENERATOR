@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name = "faculty_info")
 public class FacultyPojo {
+<<<<<<< HEAD
 
 	@JsonProperty("id")
 	private Integer faculty_id;
@@ -40,6 +41,35 @@ public class FacultyPojo {
 	@JsonProperty("availabilities")
 	private List<Calendar> dates = new ArrayList<>();
 
+=======
+	
+	@JsonProperty("username")
+	private String faculty_username;
+	
+	@JsonProperty("pass")
+	private String faculty_password;
+	
+	@JsonProperty("name")
+	private String faculty_name;
+	
+	@JsonProperty("rating")
+	private Integer rating;
+	
+	@JsonProperty("exp")
+	private Double experience;
+	
+	@JsonProperty("labFlag")
+	private Boolean lab;
+	
+	@JsonProperty("modules_assigned")
+	private List<ModulePojo> modules=new ArrayList<>();
+	
+	@JsonProperty("faculty_calendar")
+	private List<Calendar> dates=new ArrayList<>();
+	
+	
+	
+>>>>>>> 61551b3cf9f23170f42428d5fcc08efaa563005b
 	public FacultyPojo() {
 		System.out.println("faculty pojo in");
 	}
@@ -141,7 +171,11 @@ public class FacultyPojo {
 		this.dates = dates;
 	}
 
+<<<<<<< HEAD
 	@Column(name = "password", length = 50)
+=======
+	@Column(name = "password" , length = 50)
+>>>>>>> 61551b3cf9f23170f42428d5fcc08efaa563005b
 	public String getFaculty_password() {
 		return faculty_password;
 	}
@@ -149,6 +183,10 @@ public class FacultyPojo {
 	public void setFaculty_password(String faculty_password) {
 		this.faculty_password = faculty_password;
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61551b3cf9f23170f42428d5fcc08efaa563005b
 	
 	/*
 	 * public void addStudent(Student s) { // set up bi-dir asso students.add(s);

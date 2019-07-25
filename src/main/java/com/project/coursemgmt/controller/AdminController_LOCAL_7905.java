@@ -12,15 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
 import com.project.coursemgmt.daos.CalendarRepository;
 import com.project.coursemgmt.daos.FacultyRepository;
 import com.project.coursemgmt.daos.ModulesRepository;
 import com.project.coursemgmt.pojos.Calendar;
-=======
-import com.project.coursemgmt.daos.FacultyRepository;
-import com.project.coursemgmt.daos.ModulesRepository;
->>>>>>> 61551b3cf9f23170f42428d5fcc08efaa563005b
 import com.project.coursemgmt.pojos.FacultyPojo;
 import com.project.coursemgmt.pojos.ModulePojo;
 import com.project.pojos.util.CalendarUtilities;
@@ -32,18 +27,12 @@ public class AdminController {
 	@Autowired
 	private ModulesRepository modules;
 	@Autowired
-<<<<<<< HEAD
 	private CalendarUtilities calservice;
 	@Autowired
 	private FacultyRepository faculties;
 	
 	@Autowired
 	CalendarRepository calrepo;
-=======
-	private CalendarUtilities service;
-	@Autowired
-	private FacultyRepository faculties;
->>>>>>> 61551b3cf9f23170f42428d5fcc08efaa563005b
 
 	@GetMapping("/modules")
 	public List<ModulePojo> populateModules() {
@@ -51,7 +40,6 @@ public class AdminController {
 		return modules.findAll();
 	}
 	
-<<<<<<< HEAD
 	@GetMapping("/modules/{id}")
 	public ModulePojo specificModule(@PathVariable Integer id)
 	{
@@ -97,46 +85,6 @@ public class AdminController {
 	}
 	
 	
-=======
-
-	@PostMapping("/modules")
-	public String modulesAdd(ModulePojo p) {
-
-		try {
-			modules.save(p);
-			return "{ \"status\" : \"success\"}";
-		} catch (Exception e) {
-			return "{ \"status\" : \"present \"}";
-		}
-
-	}
-
-	@PutMapping("/modules")
-	public String modulesUpdate(ModulePojo p) {
-		/*
-		 * ModulePojo update=modules.findById(p.getModule_id()).get(); p=update;
-		 */
-		try {
-			modules.save(p);
-			return "{ \"status\" : \"success\"}";
-		} catch (Exception e) {
-			return "{ \"status\" : \"error in updating\"}";
-		}
-
-	}
-
-	@DeleteMapping("/modules/{id}")
-	public String moduleDelete(@PathVariable Integer id) {
-		try {
-			modules.deleteById(id);
-			return "{ \"status\" : \"success\"}";
-		} catch (Exception e) {
-			return "{ \"status\" : \"error in deleting\"}";
-		}
-	}
-	
-	
->>>>>>> 61551b3cf9f23170f42428d5fcc08efaa563005b
 	@GetMapping("/faculty")
 	public List<FacultyPojo> populateFaculty() {
 
@@ -172,11 +120,7 @@ public class AdminController {
 	}
 
 	@DeleteMapping("/faculty/{id}")
-<<<<<<< HEAD
 	public String facultyDelete(@PathVariable Integer id) {
-=======
-	public String facultyDelete(@PathVariable String id) {
->>>>>>> 61551b3cf9f23170f42428d5fcc08efaa563005b
 		try {
 			faculties.deleteById(id);
 			return "{ \"status\" : \"success\"}";
@@ -185,7 +129,6 @@ public class AdminController {
 		}
 	}
 	
-<<<<<<< HEAD
 	@GetMapping("/calendar")
 	public List<Calendar> getAlldates() {
 		return calrepo.findAll();
@@ -196,14 +139,6 @@ public class AdminController {
 		
 		if(calservice.setHolidays(d))
 			return "{ \"status\" : \"success\"}";
-=======
-	@PostMapping("/calendar")
-	public String calendarSet(List<LocalDate> d) {
-		
-		if(service.setHolidays(d))
-			
-		 return "{ \"status\" : \"success\"}";
->>>>>>> 61551b3cf9f23170f42428d5fcc08efaa563005b
 		else 
 			return "{ \"status\" : \"error\"}";
 		
@@ -214,7 +149,6 @@ public class AdminController {
 	
 	
 	
-
 
 
 }
